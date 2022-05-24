@@ -17,10 +17,10 @@ GPIO.setup(CLK, GPIO.OUT)  # GPI18を出力として使うためのセットア�
 pwm = GPIO.PWM(CLK, 100)  # 100Hz Max 200kHz
 pwm.start(50)  # duty 50%
 
-# キーボードの1つ前のコマンドの記憶用
+# キーボードの1つ前の入力を記憶
 old_key = ""
 
-# 周波数は1000で固定
+# 周波数は1000で固定　低くしたら回転が遅くなる
 speed = 1000
 
 
@@ -57,7 +57,7 @@ def z_pull():
 def stop():
     print("停止します")
     GPIO.output(ENable, 0)
-    pwm.ChangeDutyCycle(0)
+    pwm.ChangeDutyCycle(0)　 # pwmは0にできないため、Dutyを0にして止める 
 
 def continue_move():
     print("動きを継続")
@@ -74,13 +74,12 @@ def on_press(key):
         
         print('special key pressed: {key}')
         
-
         if key == keyboard.Key.right:
-            if old_key == key:
+            if old_key == key:  # 前と同じ入力キーなら動きを継続　
                 continue_move()
                 old_key = key  #  1個前の文字と入れ替えを行う
             else:
-                x_right(speed)
+                x_right(speed)　　# 新しい入力であれば動作を行う
                 old_key= key
         
         elif key == keyboard.Key.left:
@@ -90,7 +89,6 @@ def on_press(key):
             else:
                 x_left(speed)
                 old_key= key
-
 
 
 def on_release(key):
