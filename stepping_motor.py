@@ -1,3 +1,5 @@
+# coding: UTF-8
+  
 import time
 import RPi.GPIO as GPIO
 
@@ -43,8 +45,7 @@ try:
     time.sleep(2)
     Stop()
     GPIO.cleanup()  # GPIOの設定のリセット
-except:
-    except KeyboardInterrupt:
+except KeyboardInterrupt:
     pass
 print("Done!")
 Stop()
