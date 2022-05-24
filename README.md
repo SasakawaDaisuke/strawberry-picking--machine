@@ -1,1 +1,1 @@
-# strawberry-picking--machine
+# strawberry-picking-machine
