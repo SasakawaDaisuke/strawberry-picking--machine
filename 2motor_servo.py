@@ -113,7 +113,7 @@ def continue_move():
 
 
 def catch():
-    pritn("掴む")
+    print("掴む")
     pwm_servo.start(0)
     pwm_servo.ChangeDutyCycle(2.5) # -90度
 
@@ -127,16 +127,12 @@ def on_press(key):
     
     try:
         print(f'Alphanumeric key pressed: {key.char}')
-        if key.char == "a":
-            old_key = key.char
 
-        else key.char == "k":
+        if key.char == "k":
             catch()
-            old_key = key.char
-
-        else key.char == "l":
+            
+        elif key.char == "l":
             release()
-            old_key = key.char
 
     except AttributeError:
         
